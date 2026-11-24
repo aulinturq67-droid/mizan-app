@@ -5,17 +5,14 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#0B4C3A">
 <title>MIZAN — Atur Kiriman, Rem Tanggal Tua | FEBI UIN RMS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
 <style>
-@font-face{font-family:'Plus Jakarta Sans';src:url('fonts/jakarta-500.woff2') format('woff2');font-weight:500;font-style:normal;font-display:swap}
-@font-face{font-family:'Plus Jakarta Sans';src:url('fonts/jakarta-600.woff2') format('woff2');font-weight:600;font-style:normal;font-display:swap}
-@font-face{font-family:'Plus Jakarta Sans';src:url('fonts/jakarta-700.woff2') format('woff2');font-weight:700;font-style:normal;font-display:swap}
-@font-face{font-family:'Plus Jakarta Sans';src:url('fonts/jakarta-800.woff2') format('woff2');font-weight:800;font-style:normal;font-display:swap}
-@font-face{font-family:'Architects Daughter';src:url('fonts/architects-400.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap}
 :root{--bg:#EDF4F0;--ink:#0F2A22;--mut:#5E7A70;--g:#0B4C3A;--g2:#14946F;--gold:#F2B33D;--red:#E5484D;--blue:#2F7FD1;--line:#DCE8E2;--card:#fff;--navbg:rgba(255,255,255,.94);--sheetbg:#fff;--inputbg:#F3F8F5;--chipbg:#fff;--qbg:#F3F8F5;--ghostbg:#E9F1ED}
 [data-theme="dark"]{--bg:#0D2019;--ink:#EAF5EF;--mut:#86AC9D;--line:#1E4236;--card:#122A22;--navbg:rgba(12,32,26,.92);--sheetbg:#102720;--inputbg:#173A2F;--chipbg:#122A22;--qbg:#173A2F;--ghostbg:#173A2F}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{height:100%;margin:0}
-body{font:500 14px/1.4 'Plus Jakarta Sans',system-ui,sans-serif;background:var(--bg);color:var(--ink);touch-action:manipulation}
+body{font:500 14px/1.4 'Plus Jakarta Sans',system-ui,sans-serif;background:#071A15;color:var(--ink);touch-action:manipulation}
 button{font:inherit;border:0;background:none;color:inherit;cursor:pointer;padding:0}
 input{font:inherit;color:inherit}
 small{font-size:11px;color:var(--mut);font-weight:600}
@@ -138,6 +135,15 @@ section{display:none}section.on{display:block;animation:in .28s ease}
 #trc label{display:block;margin:12px 0 5px;font-size:12px;font-weight:700}
 .wf{font-family:'Architects Daughter',cursive!important;filter:grayscale(1) contrast(1.15);background-image:radial-gradient(#94A3B8 1px,transparent 1px)!important;background-size:16px 16px}
 .wf *{border-radius:5px!important;box-shadow:none!important}.wf .card,.wf .hero{border:2px dashed #334155!important;background:#fff!important;color:#0F172A!important}.wf .hero small,.wf .hero *{color:#0F172A!important}
+@media(min-width:900px){
+.side{display:block}.phone{width:395px;height:790px;max-height:96vh;border:10px solid #02100C;border-radius:48px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.5)}
+.side h1{margin:14px 0 6px;font-size:28px;color:#fff}.side p{font-size:13px;color:#9DB9AE;line-height:1.55}
+.side .lb{font-size:11px;font-weight:700;color:#7FA697;margin:20px 0 8px}
+.side .g{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.side .g2{grid-template-columns:1fr 1fr}
+.side .g button{background:#10302A;border:1px solid #1B4A3E;color:#E5F5EE;border-radius:14px;padding:11px 8px;font-size:12px;font-weight:700;text-align:left}
+.side .g button.on{background:var(--g2);border-color:var(--g2)}.side .g small{display:block;color:#8FB5A5;margin-top:2px}
+.side .note{margin-top:20px;padding:14px;border-radius:16px;background:#0C2A23;font-size:12px;line-height:1.55;color:#B9D6CA}
+}
 </style>
 </head>
 <body>
@@ -179,6 +185,17 @@ section{display:none}section.on{display:block;animation:in .28s ease}
 </defs></svg>
 
 <div class="stage">
+<aside class="side">
+  <div class="logo"><svg class="i l"><use href="#i-scale"/></svg></div>
+  <h1>MIZAN</h1>
+  <p>Atur kiriman, rem tanggal tua. Prototipe tugas akhir Pengantar Bisnis Digital — FEBI UIN Raden Mas Said.</p>
+  <div class="lb">Mode tampilan (Slide 10)</div>
+  <div class="g g2"><button id="mH" class="on" onclick="wfMode(0)">High-Fi UI</button><button id="mL" onclick="wfMode(1)">Wireframe</button></div>
+  <div class="lb">Skenario 1 ketukan</div>
+  <div class="g"><button onclick="sc('kos')">Anak kos<small>Rp1,2jt</small></button><button onclick="sc('pp')">PP / nglaju<small>Rp900rb</small></button><button onclick="sc('krisis')">Tanggal tua<small>Rp8.500/hr</small></button></div>
+  <div class="note">Validasi lapangan FEBI UIN RMS (n=18): <b>77,8%</b> mahasiswa kehabisan uang kiriman sebelum akhir bulan. MIZAN memotong tabungan di awal dan mengunci biaya kos.</div>
+</aside>
+
 <main class="phone"><div class="screen" id="screen">
   <header class="top">
     <div class="brand"><div class="logo"><svg class="i"><use href="#i-scale"/></svg></div>MIZAN</div>
@@ -229,7 +246,7 @@ section{display:none}section.on{display:block;animation:in .28s ease}
   </section>
 
   <section id="t-kuliner">
-    <div class="card" style="margin-top:6px"><div class="row"><div><h3 style="margin:0"><svg class="i" style="color:var(--g2)"><use href="#i-pin"/></svg>Kuliner UIN RMS</h3><small>Pucangan, Kartasura & sekitarnya</small></div></div>
+    <div class="card" style="margin-top:6px"><div class="row"><div><h3 style="margin:0"><svg class="i" style="color:var(--g2)"><use href="#i-pin"/></svg>Kuliner UIN RMS</h3><small id="wrUpd">Pucangan, Kartasura & sekitarnya</small></div></div>
       <div class="chips" style="margin-top:10px"><button class="chip on" data-f="all" onclick="fil('all')">Semua warung</button><button class="chip" data-f="safe" onclick="fil('safe')">Sesuai jatahku</button><button class="chip" data-f="24h" onclick="fil('24h')">Buka malam / 24 jam</button></div></div>
     <div id="wl"></div>
     <div class="card"><div class="row"><h3 style="margin:0"><svg class="i" style="color:var(--blue)"><use href="#i-wifi"/></svg>Temuan sekitar kampus</h3><button onclick="loadOSM()" style="color:var(--g2);font-size:11px;font-weight:700;display:flex;gap:4px;align-items:center"><svg class="i s"><use href="#i-undo"/></svg>Muat ulang</button></div>
@@ -264,7 +281,7 @@ section{display:none}section.on{display:block;animation:in .28s ease}
   </section>
   <section id="t-loker">
     <div class="card" style="margin-top:6px"><h3><svg class="i" style="color:var(--blue)"><use href="#i-briefcase"/></svg>Loker mahasiswa</h3>
-      <small>Pucangan, Kartasura & Solo Raya · dicek 23 Nov 2026 dari Glints & Dealls</small>
+      <small id="lkUpd">Pucangan, Kartasura & Solo Raya · diperbarui tanggal 23 November 2026</small>
       <div class="vc" style="margin:12px 0 0"><span>Waspada loker palsu: jangan bayar biaya apa pun untuk melamar. Syarat umumnya KTM aktif, CV, dan jadwal kuliah fleksibel — selalu cek iklan aslinya.</span></div></div>
     <div id="lkl"></div>
     <div class="card"><h3>Cari yang terbaru</h3>
@@ -311,6 +328,9 @@ section{display:none}section.on{display:block;animation:in .28s ease}
 </defs></svg>
 
 <script>
+const DATA_URL='https://aulinturq67-droid.github.io/mizan-app/data.json';
+const DATA_CACHE='mizan.remote.v1';
+
 const $=s=>document.querySelector(s),fmt=n=>(n<0?'-':'')+'Rp '+Math.abs(Math.round(n)).toLocaleString('id-ID');
 const ic=(n,c='')=>`<svg class="i ${c}"><use href="#i-${n}"/></svg>`;
 const esc=t=>String(t).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -321,13 +341,57 @@ let S={saku:1200000,kos:350000,kosOn:true,tgl:1,hOv:null,streak:4,best:4,grace:3
 try{Object.assign(S,JSON.parse(localStorage.getItem(KEY)||'{}'))}catch(e){}
 const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}};
 
-const WR=[
-{n:"Angkringan Pak'De Son Son",a:"Jl. Pandawa, Dusun IV, Pucangan",j:"100 m",h:"08.00–22.00 WIB",r:"4.6",lo:7000,hi:10000,m:"Nasi kucing 2 bungkus + es teh",v:"Gratis 1 gorengan / teh hangat",c:"FEBI-SONSON-01"},
-{n:"Warung Makan Bu Ndari",a:"Jl. Pandawa Dusun IV, Pucangan",j:"200 m",h:"07.00–18.00 WIB",r:"4.7",lo:9000,hi:14000,m:"Nasi rames prasmanan lauk telur",v:"Diskon Rp1.000 mahasiswa FEBI",c:"FEBI-BUNDARI-02"},
-{n:"Ayam Geprek IDAMAN Kampus",a:"Gang selatan gerbang utama UIN RMS",j:"150 m",h:"08.30–21.00 WIB",r:"4.5",lo:11000,hi:15000,m:"Paket geprek nasi sepuasnya + es teh",v:"Free refill es teh — tunjukkan KTM",c:"FEBI-GEPREK-03"},
-{n:"Burjo / Warmindo Kartasura",a:"Jl. Raya Kartasura–Solo, dekat Tugu Kartasura",j:"600 m",h:"Buka 24 jam",r:"4.4",lo:8000,hi:13000,m:"Magelangan / omelet",v:"Potongan Rp1.500 shift malam",c:"FEBI-WARMINDO-24",t:1},
-{n:"Sego Jangan & Penyetan",a:"Jl. Gajahan, Pabelan, Kartasura",j:"900 m",h:"09.00–22.00 WIB",r:"4.3",lo:8500,hi:12000,m:"Sego jangan lauk tempe penyet",v:"Bonus kerupuk porsi jumbo",c:"FEBI-SEGOJANGAN"},
-{n:"Coffee & Resto INBOX Nugas",a:"Jl. Pandawa No.04, Pucangan",j:"350 m",h:"10.00–23.00 WIB",r:"4.6",lo:14000,hi:22000,m:"Kopi hitam nugas + french fries",v:"Diskon 10% paket nugas FEBI",c:"FEBI-INBOXNUGAS",k:1}];
+/* ---------- data dinamis (BBM, warung mitra, loker) + cache offline ---------- */
+const DEFAULT_DATA={
+ updated:'23 November 2026',
+ bbm:{updated:'23 November 2026',pertalite:10000,pertamax:15950},
+ warung:[
+  {n:"Angkringan Pak'De Son Son",a:"Jl. Pandawa, Dusun IV, Pucangan",j:"100 m",h:"08.00–22.00 WIB",r:"4.6",lo:7000,hi:10000,m:"Nasi kucing 2 bungkus + es teh",v:"Gratis 1 gorengan / teh hangat",c:"FEBI-SONSON-01"},
+  {n:"Warung Makan Bu Ndari",a:"Jl. Pandawa Dusun IV, Pucangan",j:"200 m",h:"07.00–18.00 WIB",r:"4.7",lo:9000,hi:14000,m:"Nasi rames prasmanan lauk telur",v:"Diskon Rp1.000 mahasiswa FEBI",c:"FEBI-BUNDARI-02"},
+  {n:"Ayam Geprek IDAMAN Kampus",a:"Gang selatan gerbang utama UIN RMS",j:"150 m",h:"08.30–21.00 WIB",r:"4.5",lo:11000,hi:15000,m:"Paket geprek nasi sepuasnya + es teh",v:"Free refill es teh — tunjukkan KTM",c:"FEBI-GEPREK-03"},
+  {n:"Burjo / Warmindo Kartasura",a:"Jl. Raya Kartasura–Solo, dekat Tugu Kartasura",j:"600 m",h:"Buka 24 jam",r:"4.4",lo:8000,hi:13000,m:"Magelangan / omelet",v:"Potongan Rp1.500 shift malam",c:"FEBI-WARMINDO-24",t:1},
+  {n:"Sego Jangan & Penyetan",a:"Jl. Gajahan, Pabelan, Kartasura",j:"900 m",h:"09.00–22.00 WIB",r:"4.3",lo:8500,hi:12000,m:"Sego jangan lauk tempe penyet",v:"Bonus kerupuk porsi jumbo",c:"FEBI-SEGOJANGAN"},
+  {n:"Coffee & Resto INBOX Nugas",a:"Jl. Pandawa No.04, Pucangan",j:"350 m",h:"10.00–23.00 WIB",r:"4.6",lo:14000,hi:22000,m:"Kopi hitam nugas + french fries",v:"Diskon 10% paket nugas FEBI",c:"FEBI-INBOXNUGAS",k:1}
+ ],
+ lokerUpdated:'23 November 2026',
+ loker:[
+  {posisi:'Rider Kopi',tempat:'Ngopi Yuk Kartasura',gaji:'Rp1,5–2 jt · hybrid · penuh waktu',syarat:'Min. SMA/SMK',sumber:'Glints',url:'https://glints.com/id/job-location/indonesia/jawa-tengah/kab-sukoharjo/kartasura'},
+  {posisi:'Performance Content Creator',tempat:'Ngopi Yuk Kartasura',gaji:'Rp2–2,4 jt · hybrid',syarat:'Syarat lengkap di Glints',sumber:'Glints',url:'https://glints.com/id/job-location/indonesia/jawa-tengah/kab-sukoharjo/kartasura'},
+  {posisi:'Admin (paruh waktu)',tempat:'Kartika Accessories & Sparepart, Sukoharjo',gaji:'Paruh waktu · kerja di lokasi',syarat:'Syarat lengkap di Glints',sumber:'Glints',url:'https://glints.com/id/job-location/indonesia/jawa-tengah/kab-sukoharjo/kartasura'},
+  {posisi:'Sales Trainee Academy',tempat:'Ruangguru English Academy Sukoharjo',gaji:'Part-time · on-site · gaji negosiasi',syarat:'Fresh graduate / mahasiswa akhir',sumber:'Dealls',url:'https://dealls.com/loker/lokasi/loker-sukoharjo-regency'},
+  {posisi:'Pengajar part-time (Biologi)',tempat:'Ruangguru, Sragen',gaji:'Part-time · on-site · gaji negosiasi',syarat:'Min. mahasiswa tahun ke-3',sumber:'Dealls',url:'https://dealls.com/loker/tipe/loker-part-time'}
+ ]
+};
+let WR=[...DEFAULT_DATA.warung],LK=[...DEFAULT_DATA.loker],BBM={pertalite:DEFAULT_DATA.bbm.pertalite,pertamax:DEFAULT_DATA.bbm.pertamax};
+let UPD={warung:DEFAULT_DATA.updated,bbm:DEFAULT_DATA.bbm.updated,loker:DEFAULT_DATA.lokerUpdated};
+
+function applyRemoteData(d){
+ if(!d||typeof d!=='object')return;
+ if(Array.isArray(d.warung)&&d.warung.length)WR=d.warung;
+ if(Array.isArray(d.loker)&&d.loker.length)LK=d.loker;
+ if(d.bbm&&typeof d.bbm==='object'){
+  if(+d.bbm.pertalite>0)BBM.pertalite=+d.bbm.pertalite;
+  if(+d.bbm.pertamax>0)BBM.pertamax=+d.bbm.pertamax;
+  if(d.bbm.updated)UPD.bbm=String(d.bbm.updated);
+ }
+ if(d.updated)UPD.warung=String(d.updated);
+ if(d.lokerUpdated)UPD.loker=String(d.lokerUpdated);
+ else if(d.updated)UPD.loker=String(d.updated);
+}
+try{applyRemoteData(JSON.parse(localStorage.getItem(DATA_CACHE)||'null'))}catch(e){}
+
+async function syncRemoteData(){
+ if(!navigator.onLine||!DATA_URL)return;
+ try{
+  const r=await fetch(DATA_URL,{cache:'no-store'});
+  if(!r.ok)return;
+  const d=await r.json();
+  applyRemoteData(d);
+  try{localStorage.setItem(DATA_CACHE,JSON.stringify(d))}catch(e){}
+  render();renderLoker();
+ }catch(e){}
+}
+
 const QK=S.qk||[['Angkringan',8000,'flame','#E5484D'],['Geprek',12000,'bolt','#F2B33D'],['Rames',15000,'utensils','#14946F'],['Kopi',18000,'coffee','#2F7FD1']];
 
 /* ---------- jam, tanggal, status internet, cuaca ---------- */
@@ -337,7 +401,7 @@ function tick(){const d=new Date(),o=-d.getTimezoneOffset()/60,z={7:'WIB',8:'WIT
  $('#gr').textContent=(h<4?'Masih melek?':h<11?'Selamat pagi':h<15?'Selamat siang':h<19?'Selamat sore':'Selamat malam')+(S.name?', '+S.name:'');
  $('#dt').textContent=d.toLocaleDateString('id-ID',{weekday:'long',day:'numeric',month:'long'});
  if(dk(d)!==lastDay){lastDay=dk(d);render()}}
-function net(){const on=navigator.onLine;$('#net').className='net '+(on?'on':'off');$('#net').innerHTML=ic(on?'wifi':'wifioff','s');$('#off').hidden=on;if(on)wx()}
+function net(){const on=navigator.onLine;$('#net').className='net '+(on?'on':'off');$('#net').innerHTML=ic(on?'wifi':'wifioff','s');$('#off').hidden=on;if(on){wx();syncRemoteData()}}
 const WM=c=>c==0?['sun','Cerah']:c<4?['cloud','Berawan']:c<50?['cloud','Berkabut']:(c>=51&&c<=67)||(c>=80&&c<=82)?['rain','Hujan']:['rain','Badai petir'];
 async function wx(){try{const r=await fetch('https://api.open-meteo.com/v1/forecast?latitude=-7.5575&longitude=110.7436&current=temperature_2m,weather_code&timezone=auto'),c=(await r.json()).current,[i,t]=WM(c.weather_code);
  $('#wx').innerHTML=ic(i)+`<span>Kartasura ${Math.round(c.temperature_2m)}°C · ${t}</span>`+(i=='rain'?'<em>Hujan? Bawa bekal biar hemat</em>':'<em>Cuaca langsung dari internet</em>')}
@@ -374,20 +438,20 @@ function khilaf(){const v=parseInt($('#kh').value);if(!v||v<=0)return toast('Mas
  const m=j<8000?['#FF7A7F','Bahaya total! Jatah makan anjlok di bawah Rp8.000 — siap-siap mi instan.']:j<12000?['#F2B33D','Jatah turun drastis. Tinggal cukup untuk angkringan.']:['#5EE0B0','Masih aman. Tetap bijak ya.'];
  r.hidden=false;r.innerHTML=`<div class="row"><span>Jatah makan jadi</span><b style="font-size:16px;color:${m[0]}">${fmt(j)}/hari</b></div><div style="color:${m[0]};margin-top:6px">${m[1]}</div>`;vib()}
 
-
 /* ---------- kuliner ---------- */
 function fil(f){S.filter=f;document.querySelectorAll('.chip').forEach(c=>c.classList.toggle('on',c.dataset.f==f));renderWarung()}
 function renderWarung(){const j=B().jatah,L=WR.map((w,i)=>({...w,i})).filter(w=>S.filter=='safe'?w.lo<=j:S.filter=='24h'?w.t:1);
+ const wu=$('#wrUpd');if(wu)wu.textContent=`Pucangan, Kartasura & sekitarnya · diperbarui tanggal ${UPD.warung}`;
  document.querySelectorAll('.chip').forEach(c=>c.classList.toggle('on',c.dataset.f==S.filter));
- $('#wl').innerHTML=L.length?L.map(w=>`<div class="card"><div class="wr"><span class="tile" style="--c:${w.t?'#5B4FD1':w.k?'#2F7FD1':'#14946F'}">${ic(w.t?'moon':w.k?'coffee':'utensils')}</span><div style="flex:1;min-width:0"><div class="row" style="align-items:flex-start"><b>${w.n}</b><span class="star">★ ${w.r}</span></div><small>${w.a} · ${w.j}<br>${w.h}</small></div></div>
- <div class="row" style="margin-top:10px"><small>${w.m}</small><b style="font-size:12px;white-space:nowrap">Rp${w.lo/1000}–${w.hi/1000}rb</b></div>
- <div class="vc"><span style="display:flex;gap:6px;align-items:center">${ic('ticket','s')}${w.v}</span><button onclick="claim(${w.i})">Klaim</button></div>
- <div class="acts"><a class="btn ghost" style="text-decoration:none;font-size:12px;padding:9px 13px" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(w.n+' Kartasura')}" target="_blank" rel="noopener">${ic('nav','s')}Maps</a><button class="btn" style="font-size:12px;padding:9px 13px" onclick="add('${w.n.replace(/'/g,"\\'")}',${w.lo},'${w.k?'j':'m'}','${w.t?'moon':w.k?'coffee':'utensils'}')">${ic('plus','s')}Catat Rp${w.lo.toLocaleString('id-ID')}</button></div></div>`).join(''):`<div class="card empty" style="text-align:center">Tidak ada warung yang pas dengan jatahmu hari ini (${fmt(j)}).</div>`}
+ $('#wl').innerHTML=L.length?L.map(w=>`<div class="card"><div class="wr"><span class="tile" style="--c:${w.t?'#5B4FD1':w.k?'#2F7FD1':'#14946F'}">${ic(w.t?'moon':w.k?'coffee':'utensils')}</span><div style="flex:1;min-width:0"><div class="row" style="align-items:flex-start"><b>${esc(w.n)}</b><span class="star">★ ${esc(w.r)}</span></div><small>${esc(w.a)} · ${esc(w.j)}<br>${esc(w.h)}</small></div></div>
+ <div class="row" style="margin-top:10px"><small>${esc(w.m)}</small><b style="font-size:12px;white-space:nowrap">Rp${w.lo/1000}–${w.hi/1000}rb</b></div>
+ <div class="vc"><span style="display:flex;gap:6px;align-items:center">${ic('ticket','s')}${esc(w.v)}</span><button onclick="claim(${w.i})">Klaim</button></div>
+ <div class="acts"><a class="btn ghost" style="text-decoration:none;font-size:12px;padding:9px 13px" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(w.n+' Kartasura')}" target="_blank" rel="noopener">${ic('nav','s')}Maps</a><button class="btn" style="font-size:12px;padding:9px 13px" onclick="add('${esc(String(w.n).replace(/\\/g,'\\\\').replace(/'/g,"\\'"))}',${w.lo},'${w.k?'j':'m'}','${w.t?'moon':w.k?'coffee':'utensils'}')">${ic('plus','s')}Catat Rp${w.lo.toLocaleString('id-ID')}</button></div></div>`).join(''):`<div class="card empty" style="text-align:center">Tidak ada warung yang pas dengan jatahmu hari ini (${fmt(j)}).</div>`}
 
 /* ---------- bottom sheet ---------- */
 function sheet(h){$('#sh').innerHTML='<div class="grab"></div>'+h;$('#sc').classList.add('on')}
 function closeSheet(){$('#sc').classList.remove('on')}
-function claim(i){const w=WR[i];sheet(`<h2>${w.n}</h2><small>Tunjukkan layar ini ke kasir saat membayar.</small><div class="code">${w.c}</div><p style="margin:0 0 14px;font-weight:700;color:var(--g)">${w.v}</p><div class="seg"><button onclick="copyCode('${w.c}')">${ic('copy','s')}Salin kode</button><button class="on" onclick="closeSheet()">Siap makan</button></div>`)}
+function claim(i){const w=WR[i];sheet(`<h2>${esc(w.n)}</h2><small>Tunjukkan layar ini ke kasir saat membayar.</small><div class="code">${esc(w.c)}</div><p style="margin:0 0 14px;font-weight:700;color:var(--g)">${esc(w.v)}</p><div class="seg"><button onclick="copyCode('${esc(w.c)}')">${ic('copy','s')}Salin kode</button><button class="on" onclick="closeSheet()">Siap makan</button></div>`)}
 function copyCode(c){try{navigator.clipboard.writeText(c)}catch(e){}toast('Kode disalin');vib()}
 let aC='m';
 function addSheet(){aC='m';sheet(`<h2>Catat pengeluaran</h2><label>Nominal (Rp)</label><input class="fld" id="aA" type="number" inputmode="numeric" placeholder="mis. 13000" style="width:100%"><label>Untuk apa?</label><input class="fld" id="aN" placeholder="mis. Bakso depan kampus" style="width:100%"><label>Ambil dari pos</label><div class="seg"><button id="cM" class="on" onclick="pickC('m')">${ic('utensils','s')}Makan</button><button id="cJ" onclick="pickC('j')">${ic('coffee','s')}Jajan</button></div><button class="btn w" style="margin-top:18px" onclick="saveExp()">${ic('check','s')}Catat</button>`)}
@@ -418,8 +482,8 @@ function wfMode(w){$('#screen').classList.toggle('wf',!!w);$('#mH').classList.to
 function tab(t){document.querySelectorAll('section').forEach(s=>s.classList.toggle('on',s.id=='t-'+t));document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('on',b.dataset.t==t));$('#fab').style.display=t=='home'?'grid':'none';$('#view').scrollTop=0;vib();if(t=='kuliner'&&!osmLoaded){osmLoaded=1;loadOSM()}}
 let tt;function toast(m){const e=$('#toast');e.innerHTML=ic('spark','s')+esc(m);e.classList.add('on');clearTimeout(tt);tt=setTimeout(()=>e.classList.remove('on'),2400)}
 
-/* ---------- v5: transport, prioritas, cuan, loker, streak, maskot ---------- */
-const BBM={pertalite:10000,pertamax:15950},KML=40,ym=()=>{const d=new Date();return d.getFullYear()+'-'+(d.getMonth()+1)};
+/* ---------- transport, prioritas, cuan, loker, streak, maskot ---------- */
+const KML=40,ym=()=>{const d=new Date();return d.getFullYear()+'-'+(d.getMonth()+1)};
 const inc=()=>S.inc.filter(x=>x.m==ym()).reduce((a,x)=>a+x.a,0),tot=()=>S.saku+inc(),KB=()=>S.keb;
 function TR(){const t=S.tr;if(t.m=='kaki')return 0;const c=t.m=='motor'?t.km*2*t.hr/KML*BBM[t.b]:(t.km<=4?9000:9000+(t.km-4)*2250)*2*t.hr;return Math.round(c/1000)*1000}
 function setTr(k,v){if(typeof v=='number'&&!(v>=0))v=0;S.tr[k]=v;save();render()}
@@ -430,7 +494,7 @@ function renderTr(){const t=S.tr,o=(k,l)=>`<button class="chip${t.m==k?' on':''}
  <div class="fg"><div><label>Jarak sekali jalan (km)</label><input class="fld" type="number" step="0.5" min="0" value="${t.km}" onchange="setTr('km',+this.value)" style="width:100%"></div><div><label>Hari kuliah / bulan</label><input class="fld" type="number" min="0" max="31" value="${t.hr}" onchange="setTr('hr',+this.value)" style="width:100%"></div></div>
  <label>Kebutuhan harian / bulan (sabun, kuota, laundry, dll)</label><input class="fld" type="number" inputmode="numeric" value="${S.keb}" onchange="S.keb=Math.max(0,+this.value||0);save();render()" style="width:100%">
  <div class="kv" style="margin-top:12px"><span>Jarak pulang-pergi / hari</span><b>${t.km*2} km</b></div><div class="kv"><span>Transport / bulan</span><b>${fmt(TR())}</b></div><div class="kv"><span>Kebutuhan harian / bulan</span><b>${fmt(S.keb)}</b></div>
- <small style="display:block;margin-top:8px">Perkiraan: motor ±40 km/L, ojek ±Rp2.250/km (min. Rp9.000 untuk 4 km pertama).</small><small style="display:block;text-align:right;margin-top:6px">(update: 23 November 2026)</small>`}
+ <small style="display:block;margin-top:8px">Perkiraan: motor ±40 km/L, ojek ±Rp2.250/km (min. Rp9.000 untuk 4 km pertama).</small><small style="display:block;text-align:right;margin-top:6px">BBM: Pertalite ${fmt(BBM.pertalite)} · Pertamax ${fmt(BBM.pertamax)} (diperbarui tanggal ${esc(UPD.bbm)})</small>`}
 function renderPr(){const b=B(),L=[['Bayar kos & tagihan',b.kos],['Sisihkan tabungan + ZIS',b.tab],['Amankan ongkos transport',b.tr],['Pisahkan kebutuhan harian',b.kb],['Jatah makan minggu ini',Math.round(b.mk*7/b.h)],['Jajan — terakhir, dari sisa',Math.round(b.jj*7/b.h)]],n=L.filter((x,i)=>S.pr[i]).length;
  $('#pri').innerHTML=`<div class="bar" style="--c:var(--g2)"><i style="width:${n/6*100}%"></i></div>`+L.map((x,i)=>`<button class="ck${S.pr[i]?' on':''}" onclick="S.pr[${i}]=!S.pr[${i}];save();vib();renderPr()"><span class="bx">${S.pr[i]?ic('check','s'):''}</span><b style="flex:1;font-size:13px">${i+1}. ${x[0]}</b><b style="font-size:12px">${fmt(x[1])}</b></button>`).join('')+`<small style="display:block;margin-top:8px">${n==6?'Semua pos aman — siap melewati minggu pertama!':n+'/6 diamankan. Selesaikan #1–#4 di hari kiriman masuk, baru jajan.'}</small>`}
 let kT='m';function kPick(t){kT=t;$('#kM').classList.toggle('on',t=='m');$('#kJ').classList.toggle('on',t=='j');$('#khr').hidden=true}
@@ -446,9 +510,10 @@ function renderCuan(){const L=S.inc.filter(x=>x.m==ym());$('#cuT').textContent=f
 function addInc(){const a=+$('#cuA').value;if(!a||a<=0)return toast('Isi nominal pemasukan');S.inc.unshift({id:Date.now(),n:$('#cuN').value.trim()||'Part-time',a,m:ym()});$('#cuA').value='';$('#cuN').value='';save();render();vib();toast('Cuan masuk +'+fmt(a));mzSay('Mantap, cuan masuk! Jangan lupa sisihkan tabungan.')}
 function delInc(id){S.inc=S.inc.filter(x=>x.id!=id);save();render()}
 /* loker */
-const U=['https://glints.com/id/job-location/indonesia/jawa-tengah/kab-sukoharjo/kartasura','https://dealls.com/loker/lokasi/loker-sukoharjo-regency','https://dealls.com/loker/tipe/loker-part-time'],UN=['Glints','Dealls','Dealls'];
-const LK=[['Rider Kopi','Ngopi Yuk Kartasura','Rp1,5–2 jt · hybrid · penuh waktu','Min. SMA/SMK',0],['Performance Content Creator','Ngopi Yuk Kartasura','Rp2–2,4 jt · hybrid','Syarat lengkap di Glints',0],['Admin (paruh waktu)','Kartika Accessories & Sparepart, Sukoharjo','Paruh waktu · kerja di lokasi','Syarat lengkap di Glints',0],['Sales Trainee Academy','Ruangguru English Academy Sukoharjo','Part-time · on-site · gaji negosiasi','Fresh graduate / mahasiswa akhir',1],['Pengajar part-time (Biologi)','Ruangguru, Sragen','Part-time · on-site · gaji negosiasi','Min. mahasiswa tahun ke-3',2]];
-function renderLoker(){$('#lkl').innerHTML=LK.map(l=>`<div class="card"><div class="wr"><span class="tile" style="--c:#2F7FD1">${ic('briefcase')}</span><div style="flex:1;min-width:0"><b>${l[0]}</b><small style="display:block">${l[1]}</small></div></div><div class="kv" style="margin-top:10px"><span>Gaji / jenis</span><b style="text-align:right;max-width:62%">${l[2]}</b></div><div class="kv"><span>Syarat</span><b style="text-align:right;max-width:62%">${l[3]}</b></div><a class="btn ghost w" style="text-decoration:none;font-size:12px;margin-top:10px" href="${U[l[4]]}" target="_blank" rel="noopener">${ic('link','s')}Lihat di ${UN[l[4]]}</a></div>`).join('')}
+function renderLoker(){
+ const u=$('#lkUpd');if(u)u.textContent=`Pucangan, Kartasura & Solo Raya · diperbarui tanggal ${UPD.loker}`;
+ $('#lkl').innerHTML=LK.map(l=>`<div class="card"><div class="wr"><span class="tile" style="--c:#2F7FD1">${ic('briefcase')}</span><div style="flex:1;min-width:0"><b>${esc(l.posisi)}</b><small style="display:block">${esc(l.tempat)}</small></div></div><div class="kv" style="margin-top:10px"><span>Gaji / jenis</span><b style="text-align:right;max-width:62%">${esc(l.gaji)}</b></div><div class="kv"><span>Syarat</span><b style="text-align:right;max-width:62%">${esc(l.syarat)}</b></div><a class="btn ghost w" style="text-decoration:none;font-size:12px;margin-top:10px" href="${esc(l.url)}" target="_blank" rel="noopener">${ic('link','s')}Lihat di ${esc(l.sumber||'Situs Loker')}</a></div>`).join('')
+}
 /* streak + avatar */
 const D=k=>{const a=k.split('-');return new Date(a[0],a[1]-1,a[2])},gap=(a,b)=>Math.round((D(b)-D(a))/864e5);
 function lapse(n){if(S.grace>=n){S.grace-=n;return 0}S.streak=0;S.grace=3;return 1}
@@ -473,7 +538,8 @@ function mzTap(){const e=$('#mz');e.classList.remove('bn');void e.offsetWidth;e.
 function quick(){sheet(`<h2>Aksi cepat</h2><small>Pintasan fitur yang sering dipakai.</small><div style="display:grid;gap:8px;margin-top:12px">
  <button class="act" onclick="closeSheet();premSheet()" style="background:linear-gradient(135deg,#F7C65C,#C9871C);border-color:transparent"><span class="tile" style="--c:#8A5A00;background:rgba(255,255,255,.35);color:#2A1D00">${ic('crown')}</span><b style="color:#2A1D00">Upgrade ke MIZAN+</b></button>
  ${[['coins','Tambah cuan part-time',"closeSheet();tab('cuan')"],['bike','Atur transport & kebutuhan harian',"closeSheet();tab('rasio')"],['edit','Ubah anggaran & tanggal kiriman','editBudget()'],['briefcase','Cari loker mahasiswa',"closeSheet();tab('loker')"],['spark','Koleksi avatar Mizi','avSheet()'],['gear','Tema, nama & chat AI','settingsSheet()']].map(a=>`<button class="act" onclick="${a[2]}"><span class="tile" style="--c:#14946F">${ic(a[0])}</span>${a[1]}</button>`).join('')}</div>`)}
-/* ---------- v6: tema, maskot bisa digeser, chat AI, onboarding ---------- */
+
+/* ---------- tema, maskot bisa digeser, chat AI, onboarding ---------- */
 function applyTheme(){const m=S.theme||'auto',dark=m=='dark'||(m=='auto'&&matchMedia('(prefers-color-scheme: dark)').matches);
  document.documentElement.setAttribute('data-theme',dark?'dark':'light');$('#themeIco').setAttribute('href',dark?'#i-moon':'#i-sun')}
 function cycleTheme(){S.theme=S.theme=='auto'?'light':S.theme=='light'?'dark':'auto';save();applyTheme();toast({auto:'Tema: otomatis (ikuti sistem)',light:'Tema: terang',dark:'Tema: gelap'}[S.theme])}
@@ -519,7 +585,7 @@ function renderChat(){$('#chMsgs').innerHTML=S.chat.map(m=>`<div class="cm ${m.r
 function localAnswer(q){const s=q.toLowerCase(),b=B();
  if(/loker|kerja|part.?time|magang/.test(s))return 'Cek tab Loker — ada beberapa part-time di Kartasura & Sukoharjo lengkap syaratnya. Hati-hati loker yang minta bayar di depan.';
  if(/kuliner|warung|makan dimana|rekomendasi makan/.test(s))return 'Buka tab Kuliner, lalu filter "Sesuai jatahku" biar langsung muncul warung yang pas dompet.';
- if(/bensin|motor|ojek|transport|jarak/.test(s))return 'Ongkos transportmu dihitung di tab Rasio berdasar jarak PP dan harga BBM terbaru (update 23 Nov 2026).';
+ if(/bensin|motor|ojek|transport|jarak/.test(s))return `Ongkos transportmu dihitung di tab Rasio berdasar jarak PP dan harga BBM (Pertalite ${fmt(BBM.pertalite)}/L, diperbarui tanggal ${UPD.bbm}).`;
  if(/streak|avatar/.test(s))return `Streak hematmu sekarang ${S.streak} hari, kesempatan lewat tersisa ${S.grace}x. Avatar baru tiap kelipatan 5 hari sampai hari ke-365.`;
  if(/jajan|kopi|ngopi|checkout|khilaf/.test(s))return `Limit jajanmu tersisa ${fmt(b.jLeft)} bulan ini. Cek dulu di Rem Anti-Khilaf sebelum checkout.`;
  if(/makan|jatah|lapar/.test(s))return `Jatah makanmu hari ini sekitar ${fmt(b.left)}. `+(b.left<8000?'Pilih angkringan dulu ya, hindari yang di atas Rp10rb.':'Masih aman, boleh coba warung rames.');
@@ -529,7 +595,7 @@ async function askGemini(q){
  const b=B(),td=dk(new Date());
  const logHariIni=S.log.filter(l=>l.d==td).map(l=>`${l.n} (${fmt(l.a)})`).join(', ')||'belum ada';
  const daftarWarung=WR.map(w=>`${w.n} [Rp${w.lo/1000}-${w.hi/1000}rb, ${w.h}, promo: ${w.v}, kode: ${w.c}]`).join('; ');
- const daftarLoker=LK.map(l=>`${l[0]} di ${l[1]} (${l[2]}, syarat: ${l[3]})`).join('; ');
+ const daftarLoker=LK.map(l=>`${l.posisi} di ${l.tempat} (${l.gaji}, syarat: ${l.syarat})`).join('; ');
  const base=(S.persona&&S.persona.trim())||'Kamu adalah Mizi, asisten cerdas & maskot aplikasi keuangan mahasiswa MIZAN (FEBI UIN Raden Mas Said Surakarta).';
  const sys=`${base}
 Aturan jawab: Bahasa Indonesia santai, empatik, singkat (maks 4 kalimat), dan berbasis data nyata pengguna di bawah ini. Jika ditanya info terkini/umum di luar data aplikasi (misal harga BBM terbaru, info kampus, cuaca, tips), gunakan pencarian Google.
@@ -541,10 +607,11 @@ DATA REAL-TIME PENGGUNA MIZAN:
 - Pos Makan: Sisa total ${fmt(b.mLeft)} | Jatah aman/hari ${fmt(b.jatah)} | Sisa jatah makan HARI INI: ${fmt(b.left)}
 - Pos Jajan: Sisa limit bulan ini ${fmt(b.jLeft)}
 - Pengeluaran hari ini: ${logHariIni}
+- Harga BBM (${UPD.bbm}): Pertalite ${fmt(BBM.pertalite)}/L, Pertamax ${fmt(BBM.pertamax)}/L
 - Transportasi: Mode ${S.tr.m} (${S.tr.m=='motor'?S.tr.b+', ':''}jarak ${S.tr.km} km sekali jalan, ${S.tr.hr} hari/bln, biaya ${fmt(TR())}/bln)
 - Streak hemat: ${S.streak} hari (sisa kesempatan bolos: ${S.grace}x)
-- Rekomendasi Kuliner Mitra FEBI: ${daftarWarung}
-- Info Loker Mahasiswa: ${daftarLoker}`;
+- Rekomendasi Kuliner Mitra FEBI (update ${UPD.warung}): ${daftarWarung}
+- Info Loker Mahasiswa (update ${UPD.loker}): ${daftarLoker}`;
 
  let hist=S.chat.slice(0,-2).slice(-8).map(m=>({role:m.role=='user'?'user':'model',parts:[{text:m.text}]}));
  while(hist.length&&hist[0].role!=='user')hist.shift();
@@ -570,7 +637,8 @@ async function sendChat(){
  catch(e){ans=navigator.onLine?`Gagal terhubung (${e.message||'cek API key/model'}). Mode offline: ${localAnswer(t)}`:localAnswer(t)}
  S.chat[idx]={role:'ai',text:ans};save();renderChat()}
 $('#mz').addEventListener('pointerdown',mzPD);addEventListener('pointermove',mzPM);addEventListener('pointerup',mzPU);addEventListener('pointercancel',mzPU);addEventListener('resize',placeMz);
-/* ---------- v7: grafik tren, riwayat & pencarian, badge, ekspor/reset ---------- */
+
+/* ---------- grafik tren, riwayat & pencarian, badge, ekspor/reset ---------- */
 function periodDays(n){const out=[];for(let i=n-1;i>=0;i--){const d=new Date();d.setDate(d.getDate()-i);out.push({key:dk(d),label:d.toLocaleDateString('id-ID',{day:'2-digit',month:'2-digit'})})}return out}
 let TRm='w';
 function setTrendMode(m){TRm=m;$('#trW')?.classList.toggle('on',m=='w');$('#trM')?.classList.toggle('on',m=='m');renderTrend()}
@@ -602,7 +670,8 @@ function renderBadges(){if(!$('#bdg'))return;const arr=badges();$('#bdg').innerH
 /* ekspor & reset */
 function exportData(){try{navigator.clipboard.writeText(JSON.stringify(S));toast('Data disalin — tempel ke Notes untuk cadangan')}catch(e){toast('Gagal menyalin di perangkat ini')}}
 function downloadData(){try{const blob=new Blob([JSON.stringify(S,null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='mizan-data.json';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),2000);toast('Mengunduh mizan-data.json')}catch(e){toast('Unduh tak didukung di sini, coba Salin data')}}
-function resetAll(){if(!confirm('Hapus semua data MIZAN? Tindakan ini tidak bisa dibatalkan.'))return;try{localStorage.removeItem(KEY)}catch(e){}location.reload()}
+function resetAll(){if(!confirm('Hapus semua data MIZAN? Tindakan ini tidak bisa dibatalkan.'))return;try{localStorage.removeItem(KEY);localStorage.removeItem(DATA_CACHE)}catch(e){}location.reload()}
+
 /* ---------- live kuliner via OpenStreetMap (Overpass API, gratis & publik) ---------- */
 let osmLoaded=0;
 async function loadOSM(){const box=$('#osmList');if(!box)return;
@@ -614,6 +683,7 @@ async function loadOSM(){const box=$('#osmList');if(!box)return;
  box.innerHTML=items.length?items.map(e=>{const t=e.tags,jenis=t.amenity=='cafe'?'Kafe':t.amenity=='fast_food'?'Fast food':'Restoran/Rumah makan';
  return `<div class="lg"><span class="tile" style="--c:#2F7FD1;width:30px;height:30px;border-radius:10px">${ic('pin','s')}</span><span style="flex:1"><b style="display:block;font-weight:700">${esc(t.name)}</b><small>${jenis}${t.cuisine?' · '+esc(t.cuisine):''}</small></span><a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(t.name+' Kartasura')}" target="_blank" rel="noopener" style="color:var(--g2)">${ic('nav','s')}</a></div>`}).join(''):'<div class="empty">Belum ada data tambahan di radius ini.</div>'}
  catch(e){box.innerHTML='<div class="empty">Gagal memuat (server OpenStreetMap lagi sibuk). Ketuk "Muat ulang" untuk coba lagi.</div>'}}
+
 /* ---------- upgrade ke MIZAN+ (pratinjau fitur + verifikasi manual via WhatsApp) ---------- */
 const PREM_WA='62859183898533',PREM_GOPAY='0859183898533',PREM_PRICE='Rp20.000';
 function premSheet(){const st=S.premStatus,
@@ -638,8 +708,9 @@ function premSubmit(){const n=$('#pmN').value.trim(),b=$('#pmB').value.trim();
  window.open('https://wa.me/'+PREM_WA+'?text='+encodeURIComponent(msg),'_blank');
  closeSheet();toast('Membuka WhatsApp Tim Mizan…')}
 function premReset(){S.premStatus=null;save();premSheet()}
+
 addEventListener('online',net);addEventListener('offline',net);
-tick();setInterval(tick,1000);chk();applyTheme();net();render();renderLoker();renderTrend();renderBadges();placeMz();
+tick();setInterval(tick,1000);chk();applyTheme();net();render();renderLoker();renderTrend();renderBadges();placeMz();syncRemoteData();
 if(!S.name){$('#obAv').innerHTML=mizi(0,'ok',72);$('#onb').hidden=false}else{setTimeout(()=>mzSay('Halo '+S.name+'! Geser aku kalau mengganggu, atau ketuk 2x untuk ngobrol.'),1500)}
 setInterval(()=>navigator.onLine&&wx(),9e5);
 </script>
