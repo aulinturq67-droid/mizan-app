@@ -1,4 +1,4 @@
-const CACHE = 'mizan-web-v1';
+const CACHE = 'mizan-web-v2';
 const ASSETS = ['./', './index.html', './data.json', './manifest.json', './icon.svg'];
 
 self.addEventListener('install', e => {
