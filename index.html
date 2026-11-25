@@ -105,6 +105,10 @@ section{display:none}section.on{display:block;animation:in .28s ease}
 .chTop{display:flex;align-items:center;gap:10px;padding-bottom:8px;border-bottom:1px solid var(--line)}
 .chTop small{display:block;color:var(--mut);font-weight:600}
 .chTop button{padding:6px;color:var(--mut)}
+.chConf{display:flex;align-items:center;gap:8px;margin-top:8px;padding:8px 10px;border-radius:14px;background:var(--qbg);font-size:12px;font-weight:700;animation:in .2s}
+.chConf[hidden]{display:none}
+.chConf span{flex:1;line-height:1.35}
+.chConf .btn{padding:7px 12px;font-size:12px}
 #chMsgs{flex:1;min-height:0;overflow-y:auto;padding:10px 2px;display:flex;flex-direction:column;gap:8px;scrollbar-width:none}
 .cm{max-width:82%;padding:9px 13px;border-radius:16px;font-size:13px;line-height:1.45;animation:in .2s;white-space:pre-wrap}
 .cm.u{align-self:flex-end;background:var(--g);color:#fff;border-bottom-right-radius:4px}
@@ -151,6 +155,7 @@ section{display:none}section.on{display:block;animation:in .28s ease}
 <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20 14.500A8 8 0 0 1 9.500 4 8 8 0 1 0 20 14.500z"/></symbol>
 <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12.500 4.500 4.500L19 7.500"/></symbol>
 <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+<symbol id="i-trash" viewBox="0 0 24 24"><path d="M4 7h16M10 11v6M14 11v6M6 7l1 12a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2l1-12M9 7V4h6v3"/></symbol>
 <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
 <symbol id="i-undo" viewBox="0 0 24 24"><path d="M9 14 4 9l5-5M4 9h10a6 6 0 0 1 0 12h-3"/></symbol>
 <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s7-5.700 7-11.500a7 7 0 0 0-14 0C5 15.300 12 21 12 21z"/><circle cx="12" cy="9.500" r="2.500"/></symbol>
@@ -286,8 +291,10 @@ section{display:none}section.on{display:block;animation:in .28s ease}
   <div id="chatSc" onclick="if(event.target===this&&Date.now()-chatT>600)closeChat()"><div id="chatSh">
     <div class="grab"></div>
     <div class="chTop"><span id="chAv" class="tile" style="--c:#14946F;width:38px;height:38px;border-radius:12px"></span><div style="flex:1;min-width:0"><b>Mizi</b><small id="chStat"></small></div>
+      <button onclick="chatAskClear()" aria-label="Hapus chat"><svg class="i"><use href="#i-trash"/></svg></button>
       <button onclick="closeSheet();settingsSheet()" aria-label="Pengaturan"><svg class="i"><use href="#i-gear"/></svg></button>
       <button onclick="closeChat()" aria-label="Tutup"><svg class="i"><use href="#i-x"/></svg></button></div>
+    <div id="chConf" class="chConf" hidden><span>Hapus semua riwayat chat dengan Mizi?</span><button class="btn ghost" onclick="chatClearCancel()">Batal</button><button class="btn" style="background:var(--red)" onclick="chatClear()">Hapus</button></div>
     <div id="chMsgs"></div>
     <div class="chIn"><input id="chI" placeholder="Tanya Mizi…" onkeydown="if(event.key==='Enter')sendChat()"><button class="btn" onclick="sendChat()"><svg class="i s"><use href="#i-check"/></svg></button></div>
   </div></div>
@@ -311,6 +318,7 @@ section{display:none}section.on{display:block;animation:in .28s ease}
 </defs></svg>
 
 <script>
+const APP_VER='v17 · 25 Nov 2026';
 const DEBUG=false;/* ubah ke false saat rilis ke pengguna */
 let _errT=0;
 function errToast(e){try{const m=(e&&e.message)||String(e);console.error(e);if(DEBUG&&Date.now()-_errT>4000&&typeof toast==='function'){_errT=Date.now();toast('Error: '+String(m).slice(0,90))}}catch(_){}}
@@ -573,7 +581,7 @@ function settingsSheet(){sheet(`<h2>Tema, nama & chat AI</h2><label>Nama panggil
  <div class="acts" style="margin-top:14px"><button class="btn ghost" style="flex:1" onclick="stClear()">${ic('x','s')}Hapus key</button><button class="btn" style="flex:1" onclick="stSave()">${ic('check','s')}Simpan</button></div>
  <label style="margin-top:18px">Data</label><small>Cadangkan sebelum menghapus atau pindah HP.</small>
  <div class="acts" style="margin-top:8px"><button class="btn ghost" style="flex:1" onclick="exportData()">${ic('copy','s')}Salin data</button><button class="btn ghost" style="flex:1" onclick="downloadData()">${ic('link','s')}Unduh .json</button></div>
- <button class="btn w" style="margin-top:8px;background:var(--red)" onclick="resetAll()">${ic('x','s')}Hapus semua data</button>`);markTheme()}
+ <button class="btn w" style="margin-top:8px;background:var(--red)" onclick="resetAll()">${ic('x','s')}Hapus semua data</button><small style="display:block;text-align:center;margin-top:14px;color:var(--mut)">MIZAN ${APP_VER}</small>`);markTheme()}
 function markTheme(){const m=S.theme||'auto';tg('#thL',m=='light');tg('#thD',m=='dark');tg('#thA',m=='auto')}
 function setTheme(t){S.theme=t;save();applyTheme();markTheme()}
 function stSave(){S.name=$('#stN').value.trim()||S.name;S.apiKey=$('#stK').value.trim();S.model=$('#stM').value.trim()||'gemini-flash-latest';S.persona=$('#stPr').value.trim();save();closeSheet();render();toast('Pengaturan tersimpan')}
@@ -599,7 +607,10 @@ let chatT=0;
 function openChat(){chatT=Date.now();try{if(!Array.isArray(S.chat))S.chat=[];if(!S.chat.length)pushChat('ai',chatGreet());
  try{$('#chAv').innerHTML=mizi(S.av,MD,30)}catch(e){errToast(e)}
  $('#chStat').textContent=S.apiKey?'Terhubung ke Gemini API':'Asisten offline (data lokal)';$('#chatSc').classList.add('on');renderChat()}catch(e){errToast(e)}}
-function closeChat(){$('#chatSc').classList.remove('on')}
+function closeChat(){$('#chatSc').classList.remove('on');chatClearCancel()}
+function chatAskClear(){if(!(S.chat||[]).some(m=>m&&m.role=='user')){toast('Belum ada chat untuk dihapus');return}$('#chConf').hidden=false;$('#chMsgs').scrollTop=1e6}
+function chatClearCancel(){const e=$('#chConf');if(e)e.hidden=true}
+function chatClear(){S.chat=[];pushChat('ai',chatGreet());chatClearCancel();renderChat();toast('Riwayat chat dihapus')}
 function pushChat(role,text){S.chat.push({role,text});if(S.chat.length>40)S.chat=S.chat.slice(-40);save()}
 function renderChat(){if(!Array.isArray(S.chat))S.chat=[];$('#chMsgs').innerHTML=S.chat.map(m=>`<div class="cm ${m&&m.role=='user'?'u':'a'}">${esc(m&&m.text!=null?m.text:'')}</div>`).join('');$('#chMsgs').scrollTop=1e6}
 function localAnswer(q){const s=q.toLowerCase(),b=B();
@@ -655,10 +666,10 @@ async function sendChat(){
  const i=$('#chI'),t=i.value.trim();if(!t)return;if(!Array.isArray(S.chat))S.chat=[];
  i.value='';pushChat('user',t);renderChat();vib();
  pushChat('ai','…');renderChat();
- const idx=S.chat.length-1;let ans;
+ const pid='p'+Date.now()+Math.random().toString(36).slice(2,6);S.chat[S.chat.length-1].pid=pid;let ans;
  try{ans=S.apiKey?await askGemini(t):localAnswer(t)}
  catch(e){ans=navigator.onLine?`Gagal terhubung (${e.message||'cek API key/model'}). Mode offline: ${localAnswer(t)}`:localAnswer(t)}
- S.chat[idx]={role:'ai',text:ans};save();renderChat()}
+ const k=S.chat.findIndex(m=>m&&m.pid===pid);if(k<0)return;S.chat[k]={role:'ai',text:ans};save();renderChat()}
 $('#mz').addEventListener('pointerdown',mzPD);addEventListener('pointermove',mzPM);addEventListener('pointerup',mzPU);addEventListener('pointercancel',mzPU);addEventListener('resize',placeMz);
 
 /* ---------- grafik tren, riwayat & pencarian, badge, ekspor/reset ---------- */
@@ -734,10 +745,13 @@ function premReset(){S.premStatus=null;save();premSheet()}
 
 addEventListener('online',net);addEventListener('offline',net);
 const boot=f=>{try{f()}catch(e){errToast(e)}};
+boot(()=>{if(Array.isArray(S.chat)){const n=S.chat.length;S.chat=S.chat.filter(m=>m&&!m.pid);if(S.chat.length!==n)save()}});
 boot(tick);setInterval(tick,1000);boot(chk);boot(applyTheme);boot(net);boot(endAnchor);boot(render);boot(renderLoker);boot(renderTrend);boot(renderBadges);boot(placeMz);boot(syncRemoteData);
 if(!S.name){$('#obAv').innerHTML=mizi(0,'ok',72);$('#onb').hidden=false}else{setTimeout(()=>mzSay('Halo '+S.name+'! Geser aku kalau mengganggu, atau ketuk 2x untuk ngobrol.'),1500)}
 setInterval(()=>navigator.onLine&&wx(),9e5);
-if('serviceWorker' in navigator)navigator.serviceWorker.register('./sw.js').catch(()=>{});
+if('serviceWorker' in navigator){const had=!!navigator.serviceWorker.controller;let rl=false;
+ navigator.serviceWorker.register('./sw.js').then(r=>{try{r.update()}catch(e){}}).catch(()=>{});
+ navigator.serviceWorker.addEventListener('controllerchange',()=>{if(had&&!rl){rl=true;location.reload()}})}
 </script>
 </body>
 </html>
