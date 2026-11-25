@@ -220,7 +220,7 @@ section{display:none}section.on{display:block;animation:in .28s ease}
 
     <div class="card"><h3><svg class="i" style="color:var(--g2)"><use href="#i-wallet"/></svg>Smart Amplop</h3><div id="amp"></div></div>
 
-    <div class="card"><div class="row"><h3 style="margin:0"><svg class="i" style="color:var(--g2)"><use href="#i-check"/></svg>Prioritas minggu pertama</h3><button onclick="S.pr={};save();renderPr()" style="font-size:11px;color:var(--mut);font-weight:700">Reset</button></div><small>Urutan aman agar uang tidak habis di minggu pertama. Ketuk untuk menandai.</small><div id="pri" style="margin-top:10px"></div></div>
+    <div class="card"><div class="row"><h3 style="margin:0"><svg class="i" style="color:var(--g2)"><use href="#i-check"/></svg>Prioritas minggu pertama</h3><button onclick="S.pr={};save();render()" style="font-size:11px;color:var(--mut);font-weight:700">Reset</button></div><small>Urutan aman agar uang tidak habis di minggu pertama. Ketuk untuk menandai.</small><div id="pri" style="margin-top:10px"></div></div>
     <div class="card dark"><h3 style="color:var(--gold)"><svg class="i"><use href="#i-shield"/></svg>Rem Anti-Khilaf</h3>
       <small>Mau checkout Shopee atau kopi mahal? Cek dulu dampaknya ke jatah makan atau jajan harianmu.</small>
       <div class="seg" style="margin-top:10px"><button id="kM" class="on" onclick="kPick('m')"><svg class="i s"><use href="#i-utensils"/></svg>Jatah makan</button><button id="kJ" onclick="kPick('j')"><svg class="i s"><use href="#i-coffee"/></svg>Jatah jajan</button></div><div class="inp" style="margin-top:10px"><input id="kh" type="number" inputmode="numeric" placeholder="Harga barang, mis. 45000"><button class="btn gold" onclick="khilaf()">Uji</button></div>
@@ -439,9 +439,14 @@ function B(){const a=anc(),h=hari(),f=a?Math.min(1,h/30):1,kos=S.kosOn&&!(a&&S.k
  return{kos,...p,h,mLeft,jLeft:p.jj-jAll,jatah:Math.max(0,Math.round(mLeft/h)),left:base-mT,base}}
 const pct=(a,b)=>b>0?Math.max(0,Math.min(100,a/b*100)):0;
 
-function render(){const b=B(),lv=b.jatah>=15000?['','Aman terkendali','Cukup untuk 3x makan lauk telur/ayam']:b.jatah>=10000?['warn','Waspada jajan','Cukup untuk rames 2x atau angkringan']:['bad','Mode tanggal tua','Sisa < Rp10rb/hari — rem jajan total'];
+/* sisa uang di tangan = uang masuk − pengeluaran tercatat − pos prioritas #1–#4 yang sudah dicentang */
+function cycKey(){return String(nextKirim().getTime())}
+function syncPr(){const k=cycKey();if(S.prCyc==null){S.prCyc=k;save()}else if(S.prCyc!==k){S.pr={};S.prCyc=k;save()}}
+function dompet(){const b=B(),pr=S.pr||{};let out=0;[b.kos,b.tab,b.tr,b.kb].forEach((v,i)=>{if(pr[i])out+=(+v||0)});
+ const spent=cycLogs().reduce((x,l)=>x+(+l.a||0),0);return tot()-out-spent}
+function render(){syncPr();const b=B(),lv=b.jatah>=15000?['','Aman terkendali','Cukup untuk 3x makan lauk telur/ayam']:b.jatah>=10000?['warn','Waspada jajan','Cukup untuk rames 2x atau angkringan']:['bad','Mode tanggal tua','Sisa < Rp10rb/hari — rem jajan total'];
  $('#hero').className='hero '+lv[0];MD=lv[0]||'ok';$('#bd').innerHTML=ic(lv[0]?'alert':'check','s')+lv[1];$('#tip').textContent=lv[2];
- $('#uang').textContent=fmt(tot());$('#uangL').textContent=anc()?'Sisa uang':'Uang saku';$('#hrs').textContent=b.h+' hari';$('#jatah').textContent=fmt(b.jatah);$('#left').textContent=fmt(b.left);
+ const dw=dompet();$('#uang').textContent=fmt(dw);$('#uang').style.color=dw<0?'#FF9AA0':'';$('#uangL').textContent='Sisa uang';$('#hrs').textContent=b.h+' hari';$('#jatah').textContent=fmt(b.jatah);$('#left').textContent=fmt(b.left);
  $('#rg').style.strokeDashoffset=327*(1-pct(b.left,b.base)/100);
  const rows=[['lock','Kos & tagihan wajib',b.kos,100,'#5E7A70',S.kosOn?'Terkunci untuk sewa bulan ini':'Kos dibayar terpisah / PP'],
  ['sprout','Tabungan 10% + ZIS 2,5%',b.tab,100,'#14946F','Dipotong saat kiriman masuk'],
@@ -525,7 +530,7 @@ function renderTr(){const t=S.tr,o=(k,l)=>`<button class="chip${t.m==k?' on':''}
  <div class="kv" style="margin-top:12px"><span>Jarak pulang-pergi / hari</span><b>${t.km*2} km</b></div><div class="kv"><span>Transport / bulan</span><b>${fmt(TR())}</b></div><div class="kv"><span>Kebutuhan harian / bulan</span><b>${fmt(S.keb)}</b></div>
  <small style="display:block;margin-top:8px">Perkiraan: motor ±40 km/L, ojek ±Rp2.250/km (min. Rp9.000 untuk 4 km pertama).</small><small style="display:block;text-align:right;margin-top:6px">BBM: Pertalite ${fmt(BBM.pertalite)} · Pertamax ${fmt(BBM.pertamax)} (diperbarui tanggal ${esc(UPD.bbm)})</small>`}
 function renderPr(){const b=B(),L=[['Bayar kos & tagihan',b.kos],['Sisihkan tabungan + ZIS',b.tab],['Amankan ongkos transport',b.tr],['Pisahkan kebutuhan harian',b.kb],['Jatah makan minggu ini',Math.round(b.mk*7/b.h)],['Jajan — terakhir, dari sisa',Math.round(b.jj*7/b.h)]],n=L.filter((x,i)=>S.pr[i]).length;
- $('#pri').innerHTML=`<div class="bar" style="--c:var(--g2)"><i style="width:${n/6*100}%"></i></div>`+L.map((x,i)=>`<button class="ck${S.pr[i]?' on':''}" onclick="S.pr[${i}]=!S.pr[${i}];save();vib();renderPr()"><span class="bx">${S.pr[i]?ic('check','s'):''}</span><b style="flex:1;font-size:13px">${i+1}. ${x[0]}</b><b style="font-size:12px">${fmt(x[1])}</b></button>`).join('')+`<small style="display:block;margin-top:8px">${n==6?'Semua pos aman — siap melewati minggu pertama!':n+'/6 diamankan. Selesaikan #1–#4 di hari kiriman masuk, baru jajan.'}</small>`}
+ $('#pri').innerHTML=`<div class="bar" style="--c:var(--g2)"><i style="width:${n/6*100}%"></i></div>`+L.map((x,i)=>`<button class="ck${S.pr[i]?' on':''}" onclick="S.pr[${i}]=!S.pr[${i}];save();vib();render()"><span class="bx">${S.pr[i]?ic('check','s'):''}</span><b style="flex:1;font-size:13px">${i+1}. ${x[0]}</b><b style="font-size:12px">${fmt(x[1])}</b></button>`).join('')+`<small style="display:block;margin-top:8px">${n==6?'Semua pos aman — siap melewati minggu pertama!':n+'/6 diamankan. Selesaikan #1–#4 di hari kiriman masuk, baru jajan.'}</small>`}
 let kT='m';function kPick(t){kT=t;$('#kM').classList.toggle('on',t=='m');$('#kJ').classList.toggle('on',t=='j');$('#khr').hidden=true}
 /* quick-tap editable */
 let qe=0,qi=0,qc='';const IC={flame:'#E5484D',bolt:'#F2B33D',utensils:'#14946F',coffee:'#2F7FD1',bike:'#7C5CE0',sprout:'#0E9F6E',moon:'#5B4FD1',ticket:'#D9488A',book:'#C2410C',wallet:'#5E7A70'};
@@ -635,6 +640,7 @@ Aturan jawab: Bahasa Indonesia santai, empatik, singkat (maks 4 kalimat), dan be
 DATA REAL-TIME PENGGUNA MIZAN:
 - Nama: ${S.name||'Mahasiswa'} | Menuju kiriman: ${b.h} hari lagi
 - ${anc()?`Sisa uang saat ini (dibagi sampai kiriman berikutnya): ${fmt(tot())} (uang saku bulanan normal: ${fmt(S.saku)})`:`Total uang masuk bulan ini: ${fmt(tot())} (Saku: ${fmt(S.saku)}, Cuan part-time: ${fmt(inc())})`}
+- Sisa uang di tangan sekarang (setelah pengeluaran tercatat & pos prioritas yang sudah dicentang): ${fmt(dompet())}
 - Smart Amplop: Kos=${S.kosOn?fmt(b.kos):'Terpisah/PP'}, Tabungan+ZIS=${fmt(b.tab)}, Transport=${fmt(b.tr)}, Kebutuhan harian=${fmt(b.kb)}
 - Pos Makan: Sisa total ${fmt(b.mLeft)} | Jatah aman/hari ${fmt(b.jatah)} | Sisa jatah makan HARI INI: ${fmt(b.left)}
 - Pos Jajan: Sisa limit bulan ini ${fmt(b.jLeft)}
