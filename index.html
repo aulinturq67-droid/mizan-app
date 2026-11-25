@@ -12,7 +12,7 @@
 [data-theme="dark"]{--bg:#0D2019;--ink:#EAF5EF;--mut:#86AC9D;--line:#1E4236;--card:#122A22;--navbg:rgba(12,32,26,.92);--sheetbg:#102720;--inputbg:#173A2F;--chipbg:#122A22;--qbg:#173A2F;--ghostbg:#173A2F}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{height:100%;margin:0}
-body{font:500 14px/1.4 'Plus Jakarta Sans',system-ui,sans-serif;background:#071A15;color:var(--ink);touch-action:manipulation}
+body{font:500 14px/1.4 'Plus Jakarta Sans',system-ui,sans-serif;background:var(--bg);color:var(--ink);touch-action:manipulation}
 button{font:inherit;border:0;background:none;color:inherit;cursor:pointer;padding:0}
 input{font:inherit;color:inherit}
 small{font-size:11px;color:var(--mut);font-weight:600}
@@ -135,15 +135,6 @@ section{display:none}section.on{display:block;animation:in .28s ease}
 #trc label{display:block;margin:12px 0 5px;font-size:12px;font-weight:700}
 .wf{font-family:'Architects Daughter',cursive!important;filter:grayscale(1) contrast(1.15);background-image:radial-gradient(#94A3B8 1px,transparent 1px)!important;background-size:16px 16px}
 .wf *{border-radius:5px!important;box-shadow:none!important}.wf .card,.wf .hero{border:2px dashed #334155!important;background:#fff!important;color:#0F172A!important}.wf .hero small,.wf .hero *{color:#0F172A!important}
-@media(min-width:900px){
-.side{display:block}.phone{width:395px;height:790px;max-height:96vh;border:10px solid #02100C;border-radius:48px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.5)}
-.side h1{margin:14px 0 6px;font-size:28px;color:#fff}.side p{font-size:13px;color:#9DB9AE;line-height:1.55}
-.side .lb{font-size:11px;font-weight:700;color:#7FA697;margin:20px 0 8px}
-.side .g{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.side .g2{grid-template-columns:1fr 1fr}
-.side .g button{background:#10302A;border:1px solid #1B4A3E;color:#E5F5EE;border-radius:14px;padding:11px 8px;font-size:12px;font-weight:700;text-align:left}
-.side .g button.on{background:var(--g2);border-color:var(--g2)}.side .g small{display:block;color:#8FB5A5;margin-top:2px}
-.side .note{margin-top:20px;padding:14px;border-radius:16px;background:#0C2A23;font-size:12px;line-height:1.55;color:#B9D6CA}
-}
 </style>
 <link rel="manifest" href="manifest.json">
 <link rel="icon" href="icon.svg" type="image/svg+xml">
@@ -187,16 +178,6 @@ section{display:none}section.on{display:block;animation:in .28s ease}
 </defs></svg>
 
 <div class="stage">
-<aside class="side">
-  <div class="logo"><svg class="i l"><use href="#i-scale"/></svg></div>
-  <h1>MIZAN</h1>
-  <p>Atur kiriman, rem tanggal tua. Prototipe tugas akhir Pengantar Bisnis Digital — FEBI UIN Raden Mas Said.</p>
-  <div class="lb">Mode tampilan (Slide 10)</div>
-  <div class="g g2"><button id="mH" class="on" onclick="wfMode(0)">High-Fi UI</button><button id="mL" onclick="wfMode(1)">Wireframe</button></div>
-  <div class="lb">Skenario 1 ketukan</div>
-  <div class="g"><button onclick="sc('kos')">Anak kos<small>Rp1,2jt</small></button><button onclick="sc('pp')">PP / nglaju<small>Rp900rb</small></button><button onclick="sc('krisis')">Tanggal tua<small>Rp8.500/hr</small></button></div>
-  <div class="note">Validasi lapangan FEBI UIN RMS (n=18): <b>77,8%</b> mahasiswa kehabisan uang kiriman sebelum akhir bulan. MIZAN memotong tabungan di awal dan mengunci biaya kos.</div>
-</aside>
 
 <main class="phone"><div class="screen" id="screen">
   <header class="top">
